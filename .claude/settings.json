@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(adb -s 127.0.0.1:7555 shell am force-stop com.example.runner)",
+      "Bash(adb -s 127.0.0.1:7555 shell input tap 200 600)",
+      "Bash(adb -s 127.0.0.1:7555 shell input touchscreen tap 360 600)",
+      "Bash(adb -s 127.0.0.1:7555 shell am broadcast -a android.intent.action.VIEW -d \"javascript:syncKeepData\\(\\)\" -n com.example.runner/.MainActivity)"
+    ]
+  }
+}

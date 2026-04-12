@@ -1,0 +1,31 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:translateX="21.6"
+        android:translateY="21.6">
+        <!-- 跑步小人图标 -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M54,36c-6.6,0 -12,5.4 -12,12s5.4,12 12,12s12,-5.4 12,-12S60.6,36 54,36z"/>
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M54,62c-8.8,0 -16,7.2 -16,16v12h8v-12c0,-4.4 3.6,-8 8,-8s8,3.6 8,8v12h8v-12C70,69.2 62.8,62 54,62z"/>
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M42,50l-8,6l4,6l8,-6L42,50z"/>
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M66,50l8,6l-4,6l-8,-6L66,50z"/>
+        <!-- 跑道线条 -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M30,86h48v4H30V86z"/>
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M30,80h48v4H30V80z"/>
+    </group>
+</vector>

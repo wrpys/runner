@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Runner</string>
+    <string name="accessibility_service_description">此服务用于读取 Keep 应用的跑步数据界面，自动同步跑步记录到 Runner 应用。数据仅在本地存储，不会上传到外部服务器。</string>
+</resources>

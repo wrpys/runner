@@ -168,11 +168,15 @@ class KeepDataReader(private val context: Context) {
      */
     fun isKeepInstalled(): Boolean {
         return try {
-            context.packageManager.getPackageInfo(KEEP_PACKAGE, PackageManager.GET_ACTIVITIES)
-            Log.d(TAG, "Keep 应用已安装")
+            val packageInfo = context.packageManager.getPackageInfo(KEEP_PACKAGE, PackageManager.GET_ACTIVITIES)
+            Log.d(TAG, "Keep 应用已安装，版本：${packageInfo.versionName}")
             true
         } catch (e: PackageManager.NameNotFoundException) {
-            Log.w(TAG, "Keep 应用未安装")
+            Log.w(TAG, "Keep 应用未安装，包名：$KEEP_PACKAGE")
+            Log.w(TAG, "已安装的应用包名列表（包含 keep）:")
+            val installedPackages = context.packageManager.getInstalledPackages(0)
+            installedPackages.filter { it.packageName.contains("keep", ignoreCase = true) }
+                .forEach { Log.w(TAG, "  - ${it.packageName}") }
             false
         }
     }

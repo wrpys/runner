@@ -1,57 +1,59 @@
 package com.example.runner.data
 
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
+
 /**
- * Keep API 服务接口定义
- * 后续实现 Keep 同步功能时使用
+ * Keep API 服务接口
+ * Base URL: https://api.gotokeep.com
  */
 interface KeepApiService {
 
     /**
-     * 登录 Keep 账号
-     * @param username 用户名/手机号/邮箱
-     * @param password 密码
-     * @return 登录响应，包含 token
+     * 获取账号信息（验证 Token）
      */
-    // suspend fun login(username: String, password: String): LoginResponse
+    @GET("account/1/account")
+    suspend fun getAccount(@Header("Authorization") token: String): ResponseBody
 
     /**
-     * 获取跑步记录列表
-     * @param page 页码
-     * @param pageSize 每页数量
-     * @return 跑步记录列表
+     * 获取运动数据列表
+     * @param userId 用户 ID
+     * @param start 开始时间戳（毫秒）
+     * @param end 结束时间戳（毫秒）
+     * @param limit 限制数量
      */
-    // suspend fun getRunRecords(page: Int, pageSize: Int): RunRecordsResponse
+    @GET("fitnessdata/v1/user/{userId}/outdoormove")
+    suspend fun getOutdoorMove(
+        @Header("Authorization") token: String,
+        @Path("userId") userId: String,
+        @Query("start") start: Long,
+        @Query("end") end: Long,
+        @Query("limit") limit: Int = 100
+    ): ResponseBody
 
     /**
-     * 获取单次跑步详情
-     * @param runId 跑步 ID
-     * @return 跑步详情
+     * 获取跑步详情（GPX 数据）
      */
-    // suspend fun getRunDetail(runId: String): RunDetailResponse
+    @GET("fitnessdata/v1/user/{userId}/outdoormove/{moveId}/detail")
+    suspend fun getMoveDetail(
+        @Header("Authorization") token: String,
+        @Path("userId") userId: String,
+        @Path("moveId") moveId: String
+    ): ResponseBody
 }
 
 /**
- * 登录响应
+ * 请求体包装类
  */
-data class LoginResponse(
-    val token: String,
-    val userId: String,
-    val username: String
-)
-
-/**
- * 跑步记录列表响应
- */
-data class RunRecordsResponse(
-    val total: Int,
-    val records: List<RunRecord>
-)
-
-data class RunRecord(
-    val id: String,
-    val startTime: Long,
-    val endTime: Long,
-    val distance: Double,
-    val duration: Long,
-    val calories: Int
+data class KeepApiRequest(
+    val app_version: String = "8.2.11",
+    val client_id: String = "ios",
+    val os_type: String = "android"
 )

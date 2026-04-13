@@ -63,12 +63,17 @@ class WebAppInterface(private val context: Context) {
     fun syncKeepData() {
         Log.d(TAG, "=== syncKeepData 被调用 ===")
         Log.d(TAG, "开始同步 Keep 数据")
+        Log.d(TAG, "Context class: ${context.javaClass.name}")
+        Log.d(TAG, "Package name: ${context.packageName}")
 
         syncJob = CoroutineScope(Dispatchers.Main).launch {
             Log.d(TAG, "协程启动，开始检查 Root 权限")
 
             // 检查 Root 权限
-            if (!keepDataReader.isRootAvailable()) {
+            val rootAvailable = keepDataReader.isRootAvailable()
+            Log.d(TAG, "Root 权限检查结果：$rootAvailable")
+
+            if (!rootAvailable) {
                 Log.e(TAG, "Root 权限检查失败")
                 withContext(Dispatchers.Main) {
                     Toast.makeText(context, "Root 权限不可用，请确保手机已 Root 并授权本应用", Toast.LENGTH_LONG).show()
@@ -94,7 +99,11 @@ class WebAppInterface(private val context: Context) {
             Log.d(TAG, "Root 权限检查通过")
 
             // 检查 Keep 是否安装
-            if (!keepDataReader.isKeepInstalled()) {
+            val keepInstalled = keepDataReader.isKeepInstalled()
+            Log.d(TAG, "Keep 安装检查结果：$keepInstalled")
+
+            if (!keepInstalled) {
+                Log.e(TAG, "Keep 应用未安装")
                 withContext(Dispatchers.Main) {
                     Toast.makeText(context, "未检测到 Keep 应用，请先安装 Keep", Toast.LENGTH_LONG).show()
                 }

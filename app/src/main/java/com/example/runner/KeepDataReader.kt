@@ -42,23 +42,46 @@ class KeepDataReader(private val context: Context) {
     fun readRunRecords(): List<RunData> {
         val records = mutableListOf<RunData>()
 
-        // 尝试复制数据库到可访问位置
-        val tempDb = "/data/local/tmp/keep_sport.db"
-        val copyResult = executeRootCommand("cp $SPORT_DB_PATH $tempDb && chmod 644 $tempDb")
+        // 首先尝试复制数据库到可访问位置
+        val tempDir = "/data/local/tmp/keep_data"
+        val dbPath = "$KEEP_DATA_PATH/databases"
 
-        if (copyResult == null) {
-            Log.e(TAG, "无法复制数据库文件")
+        // 列出所有数据库文件
+        val dbListResult = executeRootCommand("ls $dbPath/*.db 2>/dev/null")
+        if (dbListResult == null || dbListResult.isEmpty()) {
+            Log.e(TAG, "未找到数据库文件")
             return emptyList()
         }
 
-        // 使用 strings 命令提取可读数据（简单解析）
-        val dataResult = executeRootCommand("strings $tempDb | grep -E '\"distance\"|\"duration\"|\"calories\"' | head -100")
-        if (dataResult != null) {
-            records.addAll(parseSimpleData(dataResult))
+        Log.d(TAG, "找到的数据库文件：$dbListResult")
+
+        // 尝试从每个数据库文件中提取跑步数据
+        val dbFiles = dbListResult.split("\n").filter { it.isNotBlank() }
+        for (dbFile in dbFiles) {
+            Log.d(TAG, "尝试读取数据库：$dbFile")
+            val dbName = dbFile.substringAfterLast('/')
+            val tempDb = "$tempDir/$dbName"
+
+            // 复制数据库
+            val copyResult = executeRootCommand("mkdir -p $tempDir && cp $dbFile $tempDb && chmod 644 $tempDb")
+            if (copyResult == null) {
+                Log.w(TAG, "无法复制数据库：$dbFile")
+                continue
+            }
+
+            // 尝试读取跑步相关数据
+            val dataResult = executeRootCommand("strings $tempDb | grep -E '\"distance\"|\"duration\"|\"calories\"|\"pace\"|\"running' | head -200")
+            if (dataResult != null && dataResult.isNotEmpty()) {
+                Log.d(TAG, "从 $dbName 找到跑步数据")
+                records.addAll(parseSimpleData(dataResult))
+            }
+
+            // 清理临时文件
+            executeRootCommand("rm -f $tempDb")
         }
 
-        // 清理临时文件
-        executeRootCommand("rm $tempDb")
+        // 清理临时目录
+        executeRootCommand("rm -rf $tempDir")
 
         return records
     }

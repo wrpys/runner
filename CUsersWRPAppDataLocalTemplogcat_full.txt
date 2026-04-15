@@ -1,0 +1,380 @@
+--------- beginning of main
+04-13 22:33:03.850 W/BestClock( 1250): java.time.DateTimeException: Missing NTP fix
+04-13 22:33:03.861 W/BestClock( 1250): java.time.DateTimeException: Missing NTP fix
+04-13 22:33:03.869 E/TelephonyManager( 1250): Error calling setDataEnabledForReason e:java.lang.IllegalStateException: telephony service is null.
+04-13 22:33:03.896 D/gralloc_x86( 4892): gralloc_alloc: Creating ashmem region of size 3551232
+04-13 22:33:03.916 W/AccRequestManager( 1974): getValidAccPkgDatasAfterRequests: hasMuMuRequestFinished = true, hasUuRequestFinished = true
+04-13 22:33:04.022 D/m.gotokeep.kee( 4892): Features: 0 0 0
+04-13 22:33:04.023 E/m.gotokeep.kee( 4892): vulkan version is 4194360
+04-13 22:33:04.028 D/gralloc_x86( 4892): gralloc_alloc: Creating ashmem region of size 3551232
+04-13 22:33:04.057 D/gralloc_x86( 4892): gralloc_alloc: Creating ashmem region of size 3551232
+04-13 22:33:04.156 I/system_server( 1250): Background concurrent copying GC freed 172786(8755KB) AllocSpace objects, 94(2228KB) LOS objects, 49% free, 10MB/20MB, paused 230us,1.494ms total 1.049s
+04-13 22:33:04.189 W/System  ( 1250): A resource failed to call close. 
+04-13 22:33:04.192 W/System  ( 1250): A resource failed to call close. 
+04-13 22:33:04.192 W/System  ( 1250): A resource failed to call close. 
+04-13 22:33:04.193 W/System  ( 1250): A resource failed to call close. 
+04-13 22:33:04.193 I/Choreographer( 4892): Skipped 39 frames!  The application may be doing too much work on its main thread.
+04-13 22:33:04.197 W/System  ( 1250): A resource failed to call release. 
+--------- beginning of system
+04-13 22:33:04.328 W/BroadcastQueue( 1250): Permission Denial: broadcasting Intent { act=android.net.conn.CONNECTIVITY_CHANGE flg=0x4200010 (has extras) } from null (pid=-1, uid=-1) requires com.permission.broadcast.td due to registered receiver BroadcastFilter{23f76d7 10044/u0 ReceiverList{4f7e656 4892 com.gotokeep.keep/10044/u0 remote:adc7871}}
+04-13 22:33:04.361 W/WindowManager( 1250): Failed looking up window session=Session{5b6030a 4892:u0a10044} callers=com.android.server.wm.WindowManagerService.windowForClientLocked:5833 com.android.server.wm.Session.updateRequestedVisibilities:649 android.view.IWindowSession$Stub.onTransact:1175 
+04-13 22:33:04.459 D/gralloc_x86( 4892): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:04.482 D/gralloc_x86( 4892): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:04.523 I/ActivityTaskManager( 1250): Displayed com.gotokeep.keep/.splash.SplashActivity: +1s350ms
+04-13 22:33:04.561 W/SurfaceFlinger( 1120): couldn't log to binary event log: overflow.
+04-13 22:33:04.687 W/System.err( 4892): java.io.EOFException: End of input at line 1 column 1 path $
+04-13 22:33:04.688 W/System.err( 4892): 	at com.google.gson.stream.a.f0(JsonReader.java:6)
+04-13 22:33:04.690 W/System.err( 4892): 	at com.google.gson.stream.a.z(JsonReader.java:20)
+04-13 22:33:04.690 W/System.err( 4892): 	at com.google.gson.stream.a.o0(JsonReader.java:2)
+04-13 22:33:04.690 W/System.err( 4892): 	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:1)
+04-13 22:33:04.690 W/System.err( 4892): 	at com.gotokeep.keep.common.apm.screen.white.factory.SafeCheckTypedFactory$create$1.read(SafeCheckTypedFactory.kt:1)
+04-13 22:33:04.691 W/System.err( 4892): 	at n54.c.a(GsonResponseBodyConverter.java:2)
+04-13 22:33:04.691 W/System.err( 4892): 	at n54.c.convert(GsonResponseBodyConverter.java:1)
+04-13 22:33:04.691 W/System.err( 4892): 	at retrofit2.OkHttpCall.parseResponse(OkHttpCall.java:7)
+04-13 22:33:04.692 W/System.err( 4892): 	at retrofit2.OkHttpCall$a.onResponse(OkHttpCall.java:1)
+04-13 22:33:04.692 W/System.err( 4892): 	at y14.h$a.run(RealCall.kt:7)
+04-13 22:33:04.693 W/System.err( 4892): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+04-13 22:33:04.693 W/System.err( 4892): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+04-13 22:33:04.697 W/System.err( 4892): 	at java.lang.Thread.run(Thread.java:920)
+04-13 22:33:04.820 I/m.gotokeep.kee( 4892): Background young concurrent copying GC freed 80942(5746KB) AllocSpace objects, 20(656KB) LOS objects, 8% free, 40MB/44MB, paused 543us,452us total 347.654ms
+04-13 22:33:04.916 W/InputManager-JNI( 1250): Input channel object 'cc53807 com.gotokeep.keep/com.gotokeep.keep.dc.business.mydata.activity.PersonDataV3Activity (client)' was disposed without first being removed with the input manager!
+04-13 22:33:04.957 D/gralloc_x86( 1120): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:04.956 I/Binder:1250_A( 1250): type=1400 audit(0.0:7113): avc: denied { ioctl } for path="/dev/vaddress" dev="tmpfs" ino=10782 ioctlcmd=0x4c19 scontext=u:r:system_server:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+04-13 22:33:05.020 W/BroadcastQueue( 1250): Permission Denial: broadcasting Intent { act=android.net.conn.CONNECTIVITY_CHANGE flg=0x4200010 (has extras) } from null (pid=-1, uid=-1) requires com.permission.broadcast.td due to registered receiver BroadcastFilter{9118ddb 10044/u0 ReceiverList{adfa6ea 4892 com.gotokeep.keep/10044/u0 remote:74ed5}}
+04-13 22:33:05.087 D/gralloc_x86( 4892): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:05.154 D/m.gotokeep.kee( 4892): Features: 0 0 0
+04-13 22:33:05.160 E/m.gotokeep.kee( 4892): vulkan version is 4194360
+04-13 22:33:05.162 D/gralloc_x86( 4892): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:05.184 D/gralloc_x86( 4892): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:05.239 I/RenderThread( 1444): type=1400 audit(0.0:7114): avc: denied { transfer } for scontext=u:r:platform_app:s0:c512,c768 tcontext=u:r:init:s0 tclass=binder permissive=1
+04-13 22:33:05.350 W/InputManager-JNI( 1250): Input channel object 'f6f2aad com.gotokeep.keep/com.gotokeep.keep.splash.SplashActivity (client)' was disposed without first being removed with the input manager!
+04-13 22:33:05.416 I/Thread-10( 2632): type=1400 audit(0.0:7115): avc: denied { call } for scontext=u:r:untrusted_app_27:s0:c43,c256,c512,c768 tcontext=u:r:su:s0 tclass=binder permissive=1 app=com.cocfz.com.freescript
+04-13 22:33:05.416 I/Thread-9( 2632): type=1400 audit(0.0:7116): avc: denied { call } for scontext=u:r:untrusted_app_27:s0:c43,c256,c512,c768 tcontext=u:r:su:s0 tclass=binder permissive=1 app=com.cocfz.com.freescript
+04-13 22:33:05.529 I/netd    ( 1096): type=1400 audit(0.0:7117): avc: denied { create } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_tcpdiag_socket permissive=1
+04-13 22:33:05.536 I/m.gotokeep.kee( 4892): Background concurrent copying GC freed 89502(5167KB) AllocSpace objects, 84(2016KB) LOS objects, 38% free, 37MB/61MB, paused 37us,69us total 315.525ms
+04-13 22:33:05.553 W/System  ( 4892): A resource failed to call end. 
+04-13 22:33:05.553 W/System  ( 4892): A resource failed to call end. 
+04-13 22:33:05.554 W/System  ( 4892): A resource failed to call end. 
+04-13 22:33:06.379 I/wifi@1.0-servic( 1115): type=1400 audit(0.0:7121): avc: denied { write } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_route_socket permissive=1
+04-13 22:33:06.379 I/wifi@1.0-servic( 1115): type=1400 audit(0.0:7122): avc: denied { nlmsg_readpriv } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_route_socket permissive=1
+04-13 22:33:06.379 I/wifi@1.0-servic( 1115): type=1400 audit(0.0:7123): avc: denied { read } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_route_socket permissive=1
+04-13 22:33:06.740 E/TaskPersister( 1250): File error accessing recents directory (directory doesn't exist?).
+04-13 22:33:06.756 I/Thread-1( 2815): type=1400 audit(0.0:7124): avc: denied { sys_ptrace } for capability=19 scontext=u:r:su:s0 tcontext=u:r:su:s0 tclass=capability permissive=1
+04-13 22:33:06.756 I/Thread-1( 2815): type=1400 audit(0.0:7125): avc: denied { search } for name="2632" dev="proc" ino=23638 scontext=u:r:su:s0 tcontext=u:r:untrusted_app_27:s0:c43,c256,c512,c768 tclass=dir permissive=1
+04-13 22:33:06.812 D/ProcessState(28490): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:07.433 D/ProcessState(28507): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:07.437 I/ActivityTaskManager( 1250): START u0 {flg=0x10000000 cmp=com.example.runner/.MainActivity} from uid 2000, pid 28507
+04-13 22:33:07.441 I/ActivityTaskManager( 1250): [KeepAlive] disabled for com.example.runner
+04-13 22:33:07.442 W/ActivityTaskManager( 1250): Can't find TaskDisplayArea to determine support for multi window. Task id=1353 attached=false
+04-13 22:33:07.458 D/CompatibilityChangeReporter( 1250): Compat change id reported: 174042980; UID 10046; state: DISABLED
+04-13 22:33:07.459 D/CompatibilityChangeReporter( 1250): Compat change id reported: 184838306; UID 10046; state: DISABLED
+04-13 22:33:07.465 D/CompatibilityChangeReporter( 1250): Compat change id reported: 185004937; UID 10046; state: DISABLED
+04-13 22:33:07.467 D/CompatibilityChangeReporter( 1250): Compat change id reported: 181136395; UID 10046; state: DISABLED
+04-13 22:33:07.468 D/CompatibilityChangeReporter( 1250): Compat change id reported: 174042936; UID 10046; state: DISABLED
+04-13 22:33:07.470 D/CompatibilityChangeReporter( 1250): Compat change id reported: 197654537; UID 10046; state: ENABLED
+04-13 22:33:07.486 I/ll.splashworker( 1444): type=1400 audit(0.0:7133): avc: denied { map } for path="/system/framework/framework-res.apk" dev="sda6" ino=2325 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1
+04-13 22:33:07.493 I/ll.splashworker( 1444): type=1400 audit(0.0:7134): avc: denied { read } for path="/system/framework/framework-res.apk" dev="sda6" ino=2325 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1
+04-13 22:33:07.509 I/Binder:1250_17( 1250): type=1400 audit(0.0:7135): avc: denied { call } for scontext=u:r:system_server:s0 tcontext=u:r:adbd:s0 tclass=binder permissive=1
+04-13 22:33:07.560 D/CompatibilityChangeReporter( 1250): Compat change id reported: 135634846; UID 10046; state: DISABLED
+04-13 22:33:07.561 D/gralloc_x86( 1444): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:07.597 D/CompatibilityChangeReporter( 1250): Compat change id reported: 177438394; UID 10046; state: DISABLED
+04-13 22:33:07.598 D/CompatibilityChangeReporter( 1250): Compat change id reported: 135772972; UID 10046; state: DISABLED
+04-13 22:33:07.598 D/CompatibilityChangeReporter( 1250): Compat change id reported: 135754954; UID 10046; state: ENABLED
+04-13 22:33:07.559 I/RenderThread( 1444): type=1400 audit(0.0:7136): avc: denied { search } for name="/" dev="sda6" ino=2 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=dir permissive=1
+04-13 22:33:07.563 I/RenderThread( 1444): type=1400 audit(0.0:7137): avc: denied { open } for path="/system/etc/mumu-configs/currentApp" dev="sdc3" ino=4849965 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+04-13 22:33:07.610 W/ActivityManager( 1250): Slow operation: 77ms so far, now at startProcess: asking zygote to start proc
+04-13 22:33:07.610 D/CompatibilityChangeReporter( 1250): Compat change id reported: 143937733; UID 10046; state: ENABLED
+04-13 22:33:07.613 D/ndroid.systemu( 1444): Features: 0 0 0
+04-13 22:33:07.613 E/ndroid.systemu( 1444): vulkan version is 4194360
+04-13 22:33:07.616 D/gralloc_x86( 1444): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:07.617 D/gralloc_x86( 1444): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:07.646 W/ActivityManager( 1250): Slow operation: 119ms so far, now at startProcess: done starting proc!
+04-13 22:33:07.668 D/Zygote  ( 1097): Forked child process 28512
+04-13 22:33:07.668 W/ActivityManager( 1250): Slow operation: 136ms so far, now at startProcess: returned from zygote!
+04-13 22:33:07.669 W/ActivityManager( 1250): Slow operation: 137ms so far, now at startProcess: done updating battery stats
+04-13 22:33:07.670 W/ActivityManager( 1250): Slow operation: 137ms so far, now at startProcess: building log message
+04-13 22:33:07.670 I/ActivityManager( 1250): Start proc 28512:com.example.runner/u0a46 for pre-top-activity {com.example.runner/com.example.runner.MainActivity}
+04-13 22:33:07.670 W/ActivityManager( 1250): Slow operation: 138ms so far, now at startProcess: starting to update pids map
+04-13 22:33:07.672 I/Zygote  (28512): fakeProductInfoIfNeed callded! com.example.runner
+04-13 22:33:07.676 I/Zygote  (28512): fake Product info com.example.runner not matched any pattern
+04-13 22:33:07.676 I/Zygote  (28512): fakeProductInfoFromProperties callded! com.example.runner
+04-13 22:33:07.681 E/NemuAppNameUtil(28512): save data success
+04-13 22:33:07.684 I/Zygote  (28512): seccomp disabled by setenforce 0
+04-13 22:33:07.688 D/gralloc_x86( 1120): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:07.698 I/.example.runne(28512): Late-enabling -Xcheck:jni
+04-13 22:33:07.719 W/ActivityManager( 1250): Slow operation: 186ms so far, now at startProcess: done updating pids map
+04-13 22:33:07.761 W/.example.runne(28512): Unexpected CPU variant for X86 using defaults: x86_64
+04-13 22:33:07.807 I/adbd    ( 1121): jdwp connection from 28512
+04-13 22:33:07.839 D/ProcessState(28512): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:07.869 W/OomAdjuster( 1250): Fallback pre-set sched group to default: not expected top priority
+04-13 22:33:07.896 E/ashmem  (28512): memfd: ro.vndk.version not defined or invalid (), this is mandated since P.
+04-13 22:33:07.922 D/RecentTaskMonitor( 1250): onTaskFocusChanged [FALSE] 1349
+04-13 22:33:07.922 D/RecentTaskMonitor( 1250): onTaskFocusChanged [TRUE] 1353 ignoreTFC false
+04-13 22:33:07.924 W/ActivityManager( 1250): Slow operation: 55ms so far, now at attachApplicationLocked: after mServices.attachApplicationLocked
+04-13 22:33:07.952 D/CompatibilityChangeReporter(28512): Compat change id reported: 171979766; UID 10046; state: ENABLED
+04-13 22:33:07.973 D/RecentTaskMonitor( 1250): task null or not sub display in notifyDisplayOpened
+04-13 22:33:07.973 D/RecentTaskMonitor( 1250): VAddressShellNotifier#notifyOpenTab :{"uri":"player\/tab","need_response":false,"params":{"id":"task:1353","displayId":0,"userId":0,"name":"Runner","originName":"Runner","packageName":"com.example.runner","launcher":false,"newTask":true,"icon":"iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAAAIJSURBVEiJ7ZTNS1RhFIef8957h9F7Z6wZGRyxprSG7qyMinSiKYjsgyCNWpQmLdqFkFBtBKGooL8gWkm5ihIpjGjR4K5Ak9oYZPm5KLOaRopEZ7wtzCFxEHXGnT94V+ec54H3wJHjj0\/uFeW0i6jt5DXOt5lZ54IuiociKpRfOIAU6yJtCmFz\/uHzDqdYCSJrxkdErRV8PuuCdUHu0VczFC2tptGuJ1AY4NfMb16Oxrnf354fQUVROVd2NWNoBgAbtQ2cDp8iMZXg6WDXov4Vf1FloDID\/z+xsv1oouUuCHmyny6Py4OW5TAsW+Bz+2itauHgpljWetAs4cGxNiqKylcniAar2VOymx9TCW6\/vrOg9nzoBW\/G+zANk3P22QW1ZS+5a+gZhtKJj3WTnE7S3H2ViM9m4s8EPV960URxZEsNfV\/fLpiTE521znIlAEUuLw12PYdDh9DU3FL7v7\/n7rt7DE+OLOpf8ZJbq1o4urUmAweI+G1u7ruOW3PnJjhQFiPsCwNw49Ut6p6coSl+mU8\/B\/G6vDTtvJSbIOKzARhIfKRnvJeUk2J4coSOgU5EhGhp1aIZ3XGczyISXApct60Wy2Vi+3cAYCiD85H6TL3Y7Z+DKZ3GSAOp2RSPPnQwnZ5JqrRKXwTGlhKYeiGWbmEo459Ax9KtzCvQCzK9lmFhGiYgk0j62l8AqHy6QvqI2gAAAABJRU5ErkJggg==","canChangeAppOrientation":false,"canReceiveFile":false,"pid":28512,"uid":10046,"action":"open"}}
+04-13 22:33:07.987 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/cmd","method":"POST","params":{"action":"switch_fps_mode","packageName":""}}, id: 269
+04-13 22:33:07.990 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/cmd","method":"POST","params":{"action":"switch_fps_mode","packageName":""}}, res: 
+04-13 22:33:07.990 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:07.992 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/cmd","method":"POST","params":{"action":"switch_fps_mode","packageName":""}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:07.992 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.057 W/SurfaceFlinger( 1120): couldn't log to binary event log: overflow.
+04-13 22:33:08.213 I/[ui]AppForegroundWatcher( 4892): 1/app in background
+04-13 22:33:08.217 I/[push]im_packet( 5147): 26/send PacketHeader [SID 3 , CID 2 , SER 1028 , RES 200 , TAG 0 , LEN 10]
+04-13 22:33:08.219 I/[ui]core( 4892): 1/current unread: 0 comes from []
+04-13 22:33:08.222 I/[push]core( 5147): 1/app in background
+04-13 22:33:08.285 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, id: 270
+04-13 22:33:08.285 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/cmd","method":"POST","params":{"action":"switch_fps_mode","packageName":""}}, id: 271
+04-13 22:33:08.285 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, id: 272
+04-13 22:33:08.285 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, id: 273
+04-13 22:33:08.285 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/cmd","method":"POST","params":{"action":"switch_fps_mode","packageName":""}}, id: 274
+04-13 22:33:08.285 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, id: 275
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: 
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: 
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: 
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/cmd","method":"POST","params":{"action":"switch_fps_mode","packageName":""}}, res: 
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: 
+04-13 22:33:08.287 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.290 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.290 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.294 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/cmd","method":"POST","params":{"action":"switch_fps_mode","packageName":""}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.294 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.294 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.294 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.294 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.294 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.295 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.295 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.297 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/cmd","method":"POST","params":{"action":"switch_fps_mode","packageName":""}}, res: 
+04-13 22:33:08.300 V/[ui]core( 4892): 150/handle packet: PacketHeader [SID 3 , CID 2 , SER 1028 , RES 200 , TAG 2 , LEN 7]
+04-13 22:33:08.300 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.302 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/cmd","method":"POST","params":{"action":"switch_fps_mode","packageName":""}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.304 V/[push]core( 5147): 26/received packetSize: 8, readableBytes: 4
+04-13 22:33:08.305 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.306 I/[push]im_packet( 5147): 26/received PacketHeader [SID 3 , CID 2 , SER 1028 , RES 200 , TAG 2 , LEN 7]
+04-13 22:33:08.312 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_gamepad_guid","guid":"off","name":"off","type":"off"}}, id: 276
+04-13 22:33:08.313 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, id: 277
+04-13 22:33:08.313 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_gamepad_guid","guid":"off","name":"off","type":"off"}}, id: 278
+04-13 22:33:08.313 D/nemuinit( 1031): start name: vapi, operation: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, id: 279
+04-13 22:33:08.315 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_gamepad_guid","guid":"off","name":"off","type":"off"}}, res: 
+04-13 22:33:08.315 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.315 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_gamepad_guid","guid":"off","name":"off","type":"off"}}, res: 
+04-13 22:33:08.315 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.315 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: 
+04-13 22:33:08.315 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.315 D/nemuinit( 1031): Proxy: use callback: 1932, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: 
+04-13 22:33:08.315 D/nemuinit( 1031): Proxy: not handleNemuInitMessage, use next callback
+04-13 22:33:08.318 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.318 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.320 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_input_device_list","device":8,"packageName":"com.example.runner","pid":28512,"uid":10046}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.320 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.322 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_gamepad_guid","guid":"off","name":"off","type":"off"}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.322 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.323 D/nemuinit( 1031): Proxy: use callback: 1417, handleNemuInitMessage, name: vapi, params: {"uri":"/tools/inputdevice","method":"POST","params":{"action":"set_gamepad_guid","guid":"off","name":"off","type":"off"}}, res: {"errcode":0,"message":"OK"}
+04-13 22:33:08.323 D/nemuinit( 1031): Proxy: finish handleNemuInitMessage
+04-13 22:33:08.406 I/TD_JAVA ( 4892): Get black_box success
+04-13 22:33:08.509 I/DefaultDispatch( 4892): type=1400 audit(0.0:7190): avc: denied { search } for name="/" dev="sda6" ino=2 scontext=u:r:untrusted_app:s0:c44,c256,c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=dir permissive=1
+04-13 22:33:08.553 W/System  ( 4892): A resource failed to call response.body().close(). 
+04-13 22:33:08.559 I/SkDestroyListen( 1096): type=1400 audit(0.0:7191): avc: denied { read } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_tcpdiag_socket permissive=1
+04-13 22:33:08.833 I/Typeface(28512): Preloading /system/fonts/Roboto-Regular.ttf
+04-13 22:33:08.833 I/.example.runner(28512): type=1400 audit(0.0:7192): avc: denied { map } for path="/system/fonts/Roboto-Regular.ttf" dev="sda6" ino=2294 scontext=u:r:untrusted_app:s0:c46,c256,c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1 app=com.example.runner
+04-13 22:33:08.919 I/servicemanager( 1015): type=1400 audit(0.0:7193): avc: denied { transfer } for scontext=u:r:init:s0 tcontext=u:r:untrusted_app:s0:c46,c256,c512,c768 tclass=binder permissive=1
+04-13 22:33:09.049 I/.example.runner(28512): type=1400 audit(0.0:7194): avc: denied { execute } for path="/apex/com.android.tethering/lib64/libframework-connectivity-jni.so" dev="sda6" ino=540 scontext=u:r:untrusted_app:s0:c46,c256,c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1 app=com.example.runner
+04-13 22:33:09.055 V/GraphicsEnvironment(28512): ANGLE Developer option for 'com.example.runner' set to: 'default'
+04-13 22:33:09.056 V/GraphicsEnvironment(28512): ANGLE GameManagerService for com.example.runner: false
+04-13 22:33:09.056 V/GraphicsEnvironment(28512): Neither updatable production driver nor prerelease driver is supported.
+04-13 22:33:09.058 D/NetworkSecurityConfig(28512): No Network Security Config specified, using platform default
+04-13 22:33:09.059 D/NetworkSecurityConfig(28512): No Network Security Config specified, using platform default
+04-13 22:33:09.101 D/libEGL  (28512): loaded /system/lib64/egl/libEGL_emulation.so
+04-13 22:33:09.140 D/.example.runne(28512): Features: 0 0 0
+04-13 22:33:09.140 E/.example.runne(28512): vulkan version is 4194360
+04-13 22:33:09.162 D/libEGL  (28512): loaded /system/lib64/egl/libGLESv1_CM_emulation.so
+04-13 22:33:09.174 D/libEGL  (28512): loaded /system/lib64/egl/libGLESv2_emulation.so
+04-13 22:33:09.193 D/AppCompatDelegate(28512): Checking for metadata for AppLocalesMetadataHolderService : Service not found
+04-13 22:33:09.237 E/GraphicsEnv(28512): Failed to get gpu service
+04-13 22:33:09.364 W/.example.runne(28512): Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (unsupported, reflection, allowed)
+04-13 22:33:09.366 W/.example.runne(28512): Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+04-13 22:33:09.411 I/WebViewFactory(28512): Loading com.android.webview version 110.0.5481.154.1 (code 548115537)
+04-13 22:33:09.415 W/.example.runne(28512): Entry not found
+04-13 22:33:09.420 E/WebViewLibraryLoader(28512): can't load with relro file; address space not reserved
+04-13 22:33:09.441 W/.example.runne(28512): Accessing hidden method Landroid/os/Trace;->isTagEnabled(J)Z (unsupported, reflection, allowed)
+04-13 22:33:09.441 W/.example.runne(28512): Accessing hidden method Landroid/os/Trace;->traceBegin(JLjava/lang/String;)V (unsupported, reflection, allowed)
+04-13 22:33:09.442 W/.example.runne(28512): Accessing hidden method Landroid/os/Trace;->traceEnd(J)V (unsupported, reflection, allowed)
+04-13 22:33:09.442 W/.example.runne(28512): Accessing hidden method Landroid/os/Trace;->asyncTraceBegin(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+04-13 22:33:09.442 W/.example.runne(28512): Accessing hidden method Landroid/os/Trace;->asyncTraceEnd(JLjava/lang/String;I)V (unsupported, reflection, allowed)
+04-13 22:33:09.450 I/cr_WVCFactoryProvider(28512): Loaded version=110.0.5481.154 minSdkVersion=29 isBundle=false multiprocess=true packageId=2
+04-13 22:33:09.582 V/WebViewChromiumAwInit(28512): Binding Chromium to main looper Looper (main, tid 2) {e4a0449}
+04-13 22:33:09.590 I/cr_LibraryLoader(28512): Successfully loaded native library
+04-13 22:33:09.592 I/cr_CachingUmaRecorder(28512): Flushed 9 samples from 9 histograms.
+04-13 22:33:09.651 D/cr_ChildProcLH(28512): [ChildProcessLauncherHelperImpl.java:584] Create a new ChildConnectionAllocator with package name = com.android.webview, sandboxed = true
+04-13 22:33:09.660 D/cr_BrowserStartup(28512): [BrowserStartupControllerImpl.java:437] Initializing chromium process, singleProcess=false
+04-13 22:33:09.699 D/CompatibilityChangeReporter( 1250): Compat change id reported: 135634846; UID 10046; state: DISABLED
+04-13 22:33:09.700 D/CompatibilityChangeReporter( 1250): Compat change id reported: 143937733; UID 10046; state: ENABLED
+04-13 22:33:09.699 I/webview_zygote( 1666): type=1400 audit(0.0:7202): avc: denied { getattr } for path="/system/product/app/TrichromeLibrary/TrichromeLibrary.apk" dev="sda6" ino=4118 scontext=u:r:webview_zygote:s0 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1
+04-13 22:33:09.706 I/webview_zygote( 1666): type=1400 audit(0.0:7203): avc: denied { sendto } for path="/dev/socket/logdw" scontext=u:r:webview_zygote:s0 tcontext=u:r:init:s0 tclass=unix_dgram_socket permissive=1
+04-13 22:33:09.709 D/Zygote  ( 1666): Forked child process 28545
+04-13 22:33:09.713 I/webview_zygote(28545): type=1400 audit(0.0:7204): avc: denied { search } for name="/" dev="sda6" ino=2 scontext=u:r:webview_zygote:s0 tcontext=u:object_r:unlabeled:s0 tclass=dir permissive=1
+04-13 22:33:09.713 I/webview_zygote(28545): type=1400 audit(0.0:7205): avc: denied { read } for name="TrichromeLibrary.apk" dev="sda6" ino=4118 scontext=u:r:webview_zygote:s0 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1
+04-13 22:33:09.713 I/webview_zygote(28545): type=1400 audit(0.0:7206): avc: denied { open } for path="/system/product/app/TrichromeLibrary/TrichromeLibrary.apk" dev="sda6" ino=4118 scontext=u:r:webview_zygote:s0 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1
+04-13 22:33:09.716 I/Zygote  (28545): fakeProductInfoIfNeed callded! com.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+04-13 22:33:09.719 I/Zygote  (28545): fake Product info com.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0 not matched any pattern
+04-13 22:33:09.720 I/ActivityManager( 1250): Start proc 28545:com.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i5 for  {com.example.runner/org.chromium.content.app.SandboxedProcessService0:0}
+04-13 22:33:09.721 I/Zygote  (28545): fakeProductInfoFromProperties callded! com.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+04-13 22:33:09.721 I/Zygote  (28545): fakeProductInfoFromProperties disable for uid ! com.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+04-13 22:33:09.727 E/NemuAppNameUtil(28545): save data to file error
+04-13 22:33:09.728 E/NemuAppNameUtil(28545): save data fail, try save again!!
+04-13 22:33:09.733 I/Zygote  (28545): seccomp disabled by setenforce 0
+04-13 22:33:09.751 W/ocessService0:(28545): Unexpected CPU variant for X86 using defaults: x86_64
+04-13 22:33:09.761 E/ocessService0:(28545): Not starting debugger since process cannot load the jdwp agent.
+04-13 22:33:09.766 D/ProcessState(28545): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:09.777 E/ashmem  (28545): memfd: ro.vndk.version not defined or invalid (), this is mandated since P.
+04-13 22:33:09.798 D/CompatibilityChangeReporter(28545): Compat change id reported: 171979766; UID 99005; state: ENABLED
+04-13 22:33:09.848 V/cr_A11yState(28512): [AccessibilityState.java:294] Enabled accessibility services list updated.
+04-13 22:33:09.850 V/cr_A11yState(28512): [AccessibilityState.java:313] Informing listeners of changes.
+04-13 22:33:09.852 D/ProcessState(28565): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:09.858 I/Typeface(28545): Preloading /system/fonts/Roboto-Regular.ttf
+04-13 22:33:09.928 I/LoadedApk(28545): No resource references to update in package com.android.trichromelibrary
+04-13 22:33:09.928 D/NetworkSecurityConfig(28545): No Network Security Config specified, using platform default
+04-13 22:33:09.932 D/NetworkSecurityConfig(28545): No Network Security Config specified, using platform default
+04-13 22:33:09.945 I/cr_WebViewApkApp(28545): Launched version=110.0.5481.154 minSdkVersion=29 isBundle=false processName=com.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0
+04-13 22:33:09.960 I/cr_ChildProcessService(28545): Creating new ChildProcessService pid=28545
+04-13 22:33:09.971 D/CompatibilityChangeReporter(28512): Compat change id reported: 171228096; UID 10046; state: ENABLED
+04-13 22:33:09.975 E/WebViewLibraryLoader(28545): can't load with relro file; address space not reserved
+04-13 22:33:09.982 D/ConnectivityService( 1250): requestNetwork for uid/pid:10046/28512 activeRequest: null callbackRequest: 93 [NetworkRequest [ REQUEST id=94, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10046 RequestorUid: 10046 RequestorPkg: com.example.runner] ]] callback flags: 0 priority: 2147483647
+04-13 22:33:09.983 D/ConnectivityService( 1250): NetReassign [94 : null → 100]
+04-13 22:33:09.985 D/WifiNetworkFactory( 1250): got request NetworkRequest [ REQUEST id=94, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10046 RequestorUid: 10046 RequestorPkg: com.example.runner] ]
+04-13 22:33:09.985 D/UntrustedWifiNetworkFactory( 1250): got request NetworkRequest [ REQUEST id=94, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10046 RequestorUid: 10046 RequestorPkg: com.example.runner] ]
+04-13 22:33:09.985 D/OemPaidWifiNetworkFactory( 1250): got request NetworkRequest [ REQUEST id=94, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10046 RequestorUid: 10046 RequestorPkg: com.example.runner] ]
+04-13 22:33:09.989 D/ConnectivityService( 1250): NetReassign [no changes]
+04-13 22:33:10.204 W/.example.runne(28512): Accessing hidden method Ljava/lang/invoke/MethodHandles$Lookup;-><init>(Ljava/lang/Class;I)V (unsupported, reflection, allowed)
+04-13 22:33:10.215 D/Runner  (28512): MainActivity onCreate
+04-13 22:33:10.228 W/.example.runne(28512): Accessing hidden method Landroid/media/AudioManager;->getOutputLatency(I)I (unsupported, reflection, allowed)
+04-13 22:33:10.233 W/cr_media(28512): BLUETOOTH_CONNECT permission is missing.
+04-13 22:33:10.252 D/.example.runne(28512): Features: 0 0 0
+04-13 22:33:10.252 E/.example.runne(28512): vulkan version is 4194360
+04-13 22:33:10.255 W/cr_media(28512): registerBluetoothIntentsIfNeeded: Requires BLUETOOTH permission
+04-13 22:33:10.264 D/hw-ProcessState(28512): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:10.268 E/HidlServiceManagement(28512): getService: Potential race detected, descriptor: android.hardware.configstore@1.0::ISurfaceFlingerConfigs instance: default
+04-13 22:33:10.334 D/cr_ChildProcLH(28512): [ChildProcessLauncherHelperImpl.java:287] Connection likely not created from app zygote
+04-13 22:33:10.334 D/cr_ChildProcLauncher(28512): [ChildProcessLauncher.java:250] on connect callback, pid=28545
+04-13 22:33:10.350 I/cr_LibraryLoader(28545): Successfully loaded native library
+04-13 22:33:10.350 I/cr_CachingUmaRecorder(28545): Flushed 3 samples from 3 histograms.
+04-13 22:33:10.361 I/Choreographer(28512): Skipped 76 frames!  The application may be doing too much work on its main thread.
+04-13 22:33:10.364 W/SystemServiceRegistry(28545): No service published for: uimode
+04-13 22:33:10.491 D/.example.runne(28512): Features: 0 0 0
+04-13 22:33:10.492 E/.example.runne(28512): vulkan version is 4194360
+04-13 22:33:10.501 W/OpenGLRenderer(28512): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+04-13 22:33:10.505 E/TaskPersister( 1250): File error accessing recents directory (directory doesn't exist?).
+04-13 22:33:10.532 E/HWComposer( 1120): getSupportedContentTypes: getSupportedContentTypes failed for display 4619827820427265280: Unsupported (8)
+04-13 22:33:10.533 I/hwservicemanager( 1016): getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+04-13 22:33:10.534 E/HidlServiceManagement(28512): getService: Potential race detected, descriptor: android.hardware.graphics.mapper@4.0::IMapper instance: default
+04-13 22:33:10.534 I/hwservicemanager( 1016): Since android.hardware.graphics.mapper@4.0::IMapper/default is not registered, trying to start it as a lazy HAL.
+04-13 22:33:10.535 I/Gralloc4(28512): mapper 4.x is not supported
+04-13 22:33:10.537 I/hwservicemanager( 1016): getTransport: Cannot find entry android.hardware.graphics.mapper@3.0::IMapper/default in either framework or device VINTF manifest.
+04-13 22:33:10.540 W/libc    ( 1016): Unable to set property "ctl.interface_start" to "android.hardware.graphics.mapper@4.0::IMapper/default": error code: 0x20
+04-13 22:33:10.540 I/hwservicemanager( 1016): Tried to start android.hardware.graphics.mapper@4.0::IMapper/default as a lazy service, but was unable to. Usually this happens when a service is not installed, but if the service is intended to be used as a lazy service, then it may be configured incorrectly.
+04-13 22:33:10.543 E/HidlServiceManagement(28512): getService: Potential race detected, descriptor: android.hardware.graphics.mapper@3.0::IMapper instance: default
+04-13 22:33:10.543 I/hwservicemanager( 1016): Since android.hardware.graphics.mapper@3.0::IMapper/default is not registered, trying to start it as a lazy HAL.
+04-13 22:33:10.544 W/Gralloc3(28512): mapper 3.x is not supported
+04-13 22:33:10.545 W/libc    ( 1016): Unable to set property "ctl.interface_start" to "android.hardware.graphics.mapper@3.0::IMapper/default": error code: 0x20
+04-13 22:33:10.545 I/hwservicemanager( 1016): Tried to start android.hardware.graphics.mapper@3.0::IMapper/default as a lazy service, but was unable to. Usually this happens when a service is not installed, but if the service is intended to be used as a lazy service, then it may be configured incorrectly.
+04-13 22:33:10.545 E/HidlServiceManagement(28512): getService: Potential race detected, descriptor: android.hardware.graphics.mapper@2.0::IMapper instance: default
+04-13 22:33:10.550 I/hwservicemanager( 1016): getTransport: Cannot find entry android.hardware.graphics.allocator@4.0::IAllocator/default in either framework or device VINTF manifest.
+04-13 22:33:10.550 E/HidlServiceManagement(28512): getService: Potential race detected, descriptor: android.hardware.graphics.allocator@4.0::IAllocator instance: default
+04-13 22:33:10.550 I/hwservicemanager( 1016): Since android.hardware.graphics.allocator@4.0::IAllocator/default is not registered, trying to start it as a lazy HAL.
+04-13 22:33:10.551 W/Gralloc4(28512): allocator 4.x is not supported
+04-13 22:33:10.551 I/hwservicemanager( 1016): getTransport: Cannot find entry android.hardware.graphics.allocator@3.0::IAllocator/default in either framework or device VINTF manifest.
+04-13 22:33:10.551 E/HidlServiceManagement(28512): getService: Potential race detected, descriptor: android.hardware.graphics.allocator@3.0::IAllocator instance: default
+04-13 22:33:10.551 I/hwservicemanager( 1016): Since android.hardware.graphics.allocator@3.0::IAllocator/default is not registered, trying to start it as a lazy HAL.
+04-13 22:33:10.552 W/Gralloc3(28512): allocator 3.x is not supported
+04-13 22:33:10.552 E/HidlServiceManagement(28512): getService: Potential race detected, descriptor: android.hardware.graphics.allocator@2.0::IAllocator instance: default
+04-13 22:33:10.552 W/libc    ( 1016): Unable to set property "ctl.interface_start" to "android.hardware.graphics.allocator@4.0::IAllocator/default": error code: 0x20
+04-13 22:33:10.552 I/hwservicemanager( 1016): Tried to start android.hardware.graphics.allocator@4.0::IAllocator/default as a lazy service, but was unable to. Usually this happens when a service is not installed, but if the service is intended to be used as a lazy service, then it may be configured incorrectly.
+04-13 22:33:10.554 W/libc    ( 1016): Unable to set property "ctl.interface_start" to "android.hardware.graphics.allocator@3.0::IAllocator/default": error code: 0x20
+04-13 22:33:10.554 I/hwservicemanager( 1016): Tried to start android.hardware.graphics.allocator@3.0::IAllocator/default as a lazy service, but was unable to. Usually this happens when a service is not installed, but if the service is intended to be used as a lazy service, then it may be configured incorrectly.
+04-13 22:33:10.554 D/gralloc_x86(28512): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:10.591 D/.example.runne(28512): Features: 0 0 0
+04-13 22:33:10.591 E/.example.runne(28512): vulkan version is 4194360
+04-13 22:33:10.593 D/gralloc_x86(28512): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:10.596 D/gralloc_x86(28512): gralloc_alloc: Creating ashmem region of size 3690496
+04-13 22:33:10.706 I/ll.splashscreen( 1444): type=1400 audit(0.0:7287): avc: denied { call } for scontext=u:r:platform_app:s0:c512,c768 tcontext=u:r:init:s0 tclass=binder permissive=1
+04-13 22:33:10.716 I/RenderThread( 1444): type=1400 audit(0.0:7288): avc: denied { transfer } for scontext=u:r:platform_app:s0:c512,c768 tcontext=u:r:init:s0 tclass=binder permissive=1
+04-13 22:33:10.719 I/RenderThread( 1444): type=1400 audit(0.0:7289): avc: denied { use } for path="/dev/ashmem40b3198f-3503-42c5-bc30-399b4090cda9" dev="tmpfs" ino=10668 scontext=u:r:init:s0 tcontext=u:r:platform_app:s0:c512,c768 tclass=fd permissive=1
+04-13 22:33:10.719 I/android.fg( 1250): type=1400 audit(0.0:7290): avc: denied { sendto } for path="/dev/socket/logdw" scontext=u:r:system_server:s0 tcontext=u:r:init:s0 tclass=unix_dgram_socket permissive=1
+04-13 22:33:10.725 I/ActivityTaskManager( 1250): Displayed com.example.runner/.MainActivity: +3s283ms
+04-13 22:33:10.726 I/surfaceflinger( 1120): type=1400 audit(0.0:7291): avc: denied { call } for scontext=u:r:init:s0 tcontext=u:r:platform_app:s0:c512,c768 tclass=binder permissive=1
+04-13 22:33:10.869 D/Runner  (28512): JS: Runner App initialized -- From line 169 of file:///android_asset/index.html
+04-13 22:33:10.869 D/Runner  (28512): JS: AndroidApp available: true -- From line 170 of file:///android_asset/index.html
+04-13 22:33:10.871 W/InputManager-JNI( 1250): Input channel object 'c10e3ab Splash Screen com.example.runner (client)' was disposed without first being removed with the input manager!
+04-13 22:33:11.235 D/opengl-gc( 1146): Check pid 28007: running 0
+04-13 22:33:11.266 W/System.err(28512): java.nio.file.NoSuchFileException: /system/lib64/null
+04-13 22:33:11.267 W/System.err(28512): 	at sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:214)
+04-13 22:33:11.268 W/System.err(28512): 	at java.nio.file.Files.newByteChannel(Files.java:361)
+04-13 22:33:11.268 W/System.err(28512): 	at java.nio.file.Files.newByteChannel(Files.java:407)
+04-13 22:33:11.269 W/System.err(28512): 	at java.nio.file.Files.readAllBytes(Files.java:3152)
+04-13 22:33:11.269 W/System.err(28512): 	at android.app.ActivityThread$ApplicationThread$2.run(ActivityThread.java:1859)
+04-13 22:33:11.269 W/System.err(28512): 	at android.os.Handler.handleCallback(Handler.java:938)
+04-13 22:33:11.269 W/System.err(28512): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+04-13 22:33:11.269 W/System.err(28512): 	at android.os.Looper.loopOnce(Looper.java:201)
+04-13 22:33:11.270 W/System.err(28512): 	at android.os.Looper.loop(Looper.java:288)
+04-13 22:33:11.270 W/System.err(28512): 	at android.app.ActivityThread.main(ActivityThread.java:8085)
+04-13 22:33:11.270 W/System.err(28512): 	at java.lang.reflect.Method.invoke(Native Method)
+04-13 22:33:11.270 W/System.err(28512): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)
+04-13 22:33:11.271 W/System.err(28512): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1091)
+04-13 22:33:11.281 I/RecentTaskMonitor( 1250): broadcast tab opened in android as it's new task1 1353
+04-13 22:33:11.285 D/TabManager( 1417): setFocusTaskProp 1353
+04-13 22:33:11.295 W/AccMsgReceiver( 1974): AccMsgReceiver: onReceive action = nemu.intent.action.NEW_TASK
+04-13 22:33:11.305 W/ContextImpl( 1417): Calling a method in the system process without a qualified user: android.app.ContextImpl.sendBroadcast:1181 android.content.ContextWrapper.sendBroadcast:479 com.netease.nemu_vapi_android.thread.NewFileUpdater.notifyFocusedTabChanged:499 com.netease.nemu_vapi_android.thread.NewFileUpdater.onOpenNewTask:421 com.netease.nemu_vapi_android.worker.LocalAppManager.updateOnNewTask:259 
+04-13 22:33:11.317 W/ContextImpl( 1417): Calling a method in the system process without a qualified user: android.app.ContextImpl.sendBroadcast:1181 android.content.ContextWrapper.sendBroadcast:479 com.netease.nemu_vapi_android.thread.NewFileUpdater.notifyFocusedTabChanged:504 com.netease.nemu_vapi_android.thread.NewFileUpdater.onOpenNewTask:421 com.netease.nemu_vapi_android.worker.LocalAppManager.updateOnNewTask:259 
+04-13 22:33:11.321 D/NewFileUpdater( 1417): onOpenNewTask focusPkgName set to com.example.runner
+04-13 22:33:11.321 D/Watchdog( 1417): ignore events AppLaunch: {"app_name":"Runner","app_package":"com.example.runner","event_duration":0,"failure_reason":"","status_code":0}
+04-13 22:33:11.323 D/Watchdog( 1417): upload event: {"architecture":"x86_64","channel":"nochannel","country":"zh-CN","engine":"NEMUX","fchannel":"nochannel-mumu12","language":"zh-Hans","mpid":"0","package":"mumu","product":"MuMu5.0","product_version":"5.24.4.3342","usage":"0","uuid":"f285e47f-fb58-4430-876c-4a4fd1f4e54c","version":"5.24.4.3342","x":{"app_name":"Runner","app_package":"com.example.runner","app_version_code":1,"app_version_name":"1.0.0","error":{"code":0,"msg":"ok"},"extra":{"NB":"{\"NB_64BIT\":\"true\"}","amp_name":"Runner","ampid":0,"is_remote_control":0},"token":"97a750e7-651d-4855-bb9a-9ee1d6c3e0e8"}}	type: LaunchAPP	sign: OdfhJ0Q6dhg5Ud/vi09/8J8YkWI=	uid: 1000	json:{"app_name":"Runner","app_package":"com.example.runner","app_version_code":1,"app_version_name":"1.0.0","error":{"code":0,"msg":"ok"},"extra":{"NB":"{\"NB_64BIT\":\"true\"}","amp_name":"Runner","ampid":0,"is_remote_control":0},"token":"97a750e7-651d-4855-bb9a-9ee1d6c3e0e8"}
+04-13 22:33:11.326 W/ActivityManager( 1250): Foreground service started from background can not have location/camera/microphone access: service com.mumu.acc/.AccService
+04-13 22:33:11.328 W/AccServiceManager( 1974): onAppLaunch: packageName = com.example.runner
+04-13 22:33:11.331 W/AccMsgReceiver( 1974): AccMsgReceiver: onReceive action = com.mumu.launcher.ACTION_FOCUSED_TAB_CHANGED
+04-13 22:33:11.332 V/ActivityManager( 1250): Attempted to start a foreground service (com.mumu.acc/.AccService) with a broken notification (no icon: Notification(channel=acc-service shortcut=null contentView=null vibrate=null sound=null defaults=0x0 flags=0x40 color=0x00000000 vis=PRIVATE))
+04-13 22:33:11.370 D/Watchdog( 1417): upload server response: {"errcode": 100, "errmsg": "ok"}
+04-13 22:33:11.370 D/Watchdog( 1417): upload result: true
+04-13 22:33:11.446 W/NewFileUpdater( 1417): MSG_GET_PACKAGE_TAG_INFO, no available new tag for: com.example.runner, workingTag: 12.1962
+04-13 22:33:12.403 I/wifi@1.0-servic( 1115): type=1400 audit(0.0:7300): avc: denied { write } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_route_socket permissive=1
+04-13 22:33:12.403 I/wifi@1.0-servic( 1115): type=1400 audit(0.0:7301): avc: denied { nlmsg_readpriv } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_route_socket permissive=1
+04-13 22:33:12.403 I/wifi@1.0-servic( 1115): type=1400 audit(0.0:7302): avc: denied { read } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_route_socket permissive=1
+04-13 22:33:12.406 I/WifiHandlerThre( 1250): type=1400 audit(0.0:7303): avc: denied { map_read } for scontext=u:r:system_server:s0 tcontext=u:r:init:s0 tclass=bpf permissive=1
+04-13 22:33:12.489 I/adbd    (28614): type=1400 audit(0.0:7304): avc: denied { execute } for name="sh" dev="sda6" ino=847 scontext=u:r:adbd:s0 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1
+04-13 22:33:12.872 D/ProcessState(28618): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:12.915 W/System  ( 4892): A resource failed to call end. 
+04-13 22:33:13.214 E/Oms-SDK.( 4934): [WearableApiManager]Service missing when getting application info
+04-13 22:33:13.619 I/lmkd    ( 1014): type=1400 audit(0.0:7321): avc: denied { write } for name="oom_score_adj" dev="proc" ino=16722 scontext=u:r:init:s0 tcontext=u:r:permissioncontroller_app:s0:c36,c256,c512,c768 tclass=file permissive=1
+04-13 22:33:14.161 E/Oms-SDK.( 4892): [WearableApiManager]Service missing when getting application info
+04-13 22:33:15.894 D/ProcessState(28624): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:15.905 D/ProfileInstaller(28512): Installing profile for com.example.runner
+04-13 22:33:18.913 D/ProcessState(28629): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:21.930 D/ProcessState(28633): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:23.969 I/Binder:1096_2( 1096): type=1400 audit(0.0:7322): avc: denied { read write } for path="socket:[21243709]" dev="sockfs" ino=21243709 scontext=u:r:init:s0 tcontext=u:r:platform_app:s0:c512,c768 tclass=tcp_socket permissive=1
+04-13 22:33:23.969 I/Binder:1096_2( 1096): type=1400 audit(0.0:7323): avc: denied { getopt } for scontext=u:r:init:s0 tcontext=u:r:platform_app:s0:c512,c768 tclass=tcp_socket permissive=1
+04-13 22:33:23.973 I/Binder:1096_2( 1096): type=1400 audit(0.0:7324): avc: denied { setopt } for scontext=u:r:init:s0 tcontext=u:r:platform_app:s0:c512,c768 tclass=tcp_socket permissive=1
+04-13 22:33:24.946 D/ProcessState(28641): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:26.496 I/adbd    (28644): type=1400 audit(0.0:7325): avc: denied { read } for name="linker64" dev="sda6" ino=733 scontext=u:r:adbd:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=1
+04-13 22:33:27.961 D/ProcessState(28648): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:30.975 D/ProcessState(28652): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:32.909 I/compat_ram_d( 1033): type=1400 audit(0.0:7326): avc: denied { read } for name="cpu" dev="proc" ino=4026532064 scontext=u:r:init:s0 tcontext=u:object_r:proc_pressure_cpu:s0 tclass=file permissive=1
+04-13 22:33:32.909 I/compat_ram_d( 1033): type=1400 audit(0.0:7327): avc: denied { open } for path="/proc/pressure/cpu" dev="proc" ino=4026532064 scontext=u:r:init:s0 tcontext=u:object_r:proc_pressure_cpu:s0 tclass=file permissive=1
+04-13 22:33:32.909 I/compat_ram_d( 1033): type=1400 audit(0.0:7328): avc: denied { getattr } for path="/proc/pressure/cpu" dev="proc" ino=4026532064 scontext=u:r:init:s0 tcontext=u:object_r:proc_pressure_cpu:s0 tclass=file permissive=1
+04-13 22:33:32.909 I/compat_ram_d( 1033): type=1400 audit(0.0:7329): avc: denied { read } for name="io" dev="proc" ino=4026532062 scontext=u:r:init:s0 tcontext=u:object_r:proc_pressure_io:s0 tclass=file permissive=1
+04-13 22:33:32.909 I/compat_ram_d( 1033): type=1400 audit(0.0:7330): avc: denied { open } for path="/proc/pressure/io" dev="proc" ino=4026532062 scontext=u:r:init:s0 tcontext=u:object_r:proc_pressure_io:s0 tclass=file permissive=1
+04-13 22:33:33.991 D/ProcessState(28659): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:34.179 I/health@2.0-serv( 1110): type=1400 audit(0.0:7334): avc: denied { read } for name="present" dev="sysfs" ino=8684 scontext=u:r:init:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+04-13 22:33:34.179 I/health@2.0-serv( 1110): type=1400 audit(0.0:7335): avc: denied { open } for path="/sys/devices/virtual/power_supply/battery/present" dev="sysfs" ino=8684 scontext=u:r:init:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+04-13 22:33:35.533 I/netd    ( 1096): type=1400 audit(0.0:7336): avc: denied { create } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_tcpdiag_socket permissive=1
+04-13 22:33:35.533 I/netd    ( 1096): type=1400 audit(0.0:7337): avc: denied { connect } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_tcpdiag_socket permissive=1
+04-13 22:33:35.533 I/netd    ( 1096): type=1400 audit(0.0:7338): avc: denied { write } for path="socket:[21243819]" dev="sockfs" ino=21243819 scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_tcpdiag_socket permissive=1
+04-13 22:33:35.533 I/netd    ( 1096): type=1400 audit(0.0:7339): avc: denied { nlmsg_read } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_tcpdiag_socket permissive=1
+04-13 22:33:37.008 D/ProcessState(28663): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:40.023 D/ProcessState(28670): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:43.037 D/ProcessState(28677): Binder ioctl to enable oneway spam detection failed: Invalid argument
+04-13 22:33:46.061 D/ProcessState(28681): Binder ioctl to enable oneway spam detection failed: Invalid argument

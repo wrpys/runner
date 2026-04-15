@@ -7,6 +7,15 @@ android {
     namespace = "com.example.runner"
     compileSdk = 34
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("release.keystore")
+            storePassword = "runner123"
+            keyAlias = "runner-release"
+            keyPassword = "runner123"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.example.runner"
         minSdk = 29
@@ -17,6 +26,7 @@ android {
 
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -50,4 +60,7 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+    // 高德地图 SDK - 公交查询
+    implementation("com.amap.api:search:latest.integration")
 }

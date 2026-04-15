@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
         progressBar = findViewById(R.id.progressBar)
 
-        // 创建 WebAppInterface
-        webAppInterface = WebAppInterface(this)
+        // 创建 WebAppInterface（需要传入 WebView 用于 JS 回调）
+        webAppInterface = WebAppInterface(this, webView)
 
         Log.d(TAG, "MainActivity onCreate")
         setupWebView()

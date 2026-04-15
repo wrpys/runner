@@ -84,8 +84,9 @@ class KeepApiClient(private val context: Context) {
         }
 
         try {
-            val endTime = System.currentTimeMillis()
-            val startTime = endTime - (days.toLong() * 24 * 60 * 60 * 1000)
+            // 时间戳转换为秒（Keep API 使用秒级时间戳）
+            val endTime = System.currentTimeMillis() / 1000
+            val startTime = endTime - (days.toLong() * 24 * 60 * 60)
 
             Log.d(TAG, "获取运动数据：start=$startTime, end=$endTime")
 
@@ -100,17 +101,24 @@ class KeepApiClient(private val context: Context) {
             val jsonString = response.string()
             Log.d(TAG, "API 响应：$jsonString")
 
-            val json = JSONObject(jsonString)
-            val errorCode = json.optInt("errorCode", -1)
+            // 尝试解析响应
+            try {
+                val json = JSONObject(jsonString)
+                val errorCode = json.optInt("errorCode", -1)
 
-            if (errorCode == 0) {
-                val moves = parseOutdoorMoveResponse(json)
-                Log.d(TAG, "解析到 ${moves.size} 条运动记录")
-                Result.success(moves)
-            } else {
-                val errorMsg = json.optString("error", "未知错误")
-                Log.e(TAG, "API 错误：$errorMsg")
-                Result.failure(Exception("API 错误：$errorMsg"))
+                if (errorCode == 0) {
+                    val moves = parseOutdoorMoveResponse(json)
+                    Log.d(TAG, "解析到 ${moves.size} 条运动记录")
+                    Result.success(moves)
+                } else {
+                    val errorMsg = json.optString("error", "未知错误")
+                    Log.e(TAG, "API 错误：$errorMsg")
+                    Result.failure(Exception("API 错误：$errorMsg"))
+                }
+            } catch (e: Exception) {
+                // 尝试另一种响应格式
+                Log.w(TAG, "标准格式解析失败，尝试备用解析")
+                Result.failure(Exception("响应格式未知：$jsonString"))
             }
         } catch (e: Exception) {
             Log.e(TAG, "获取运动数据失败", e)

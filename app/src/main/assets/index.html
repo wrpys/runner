@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Runner - Keep 跑步数据同步</title>
+    <title>Runner - 公交查询</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -12,101 +12,549 @@
             min-height: 100vh;
             padding: 20px;
         }
-        .container { max-width: 400px; margin: 0 auto; }
-        .header { text-align: center; color: white; padding: 30px 0; }
-        .header h1 { font-size: 28px; margin-bottom: 10px; }
-        .header p { opacity: 0.9; font-size: 14px; }
+        .container { max-width: 500px; margin: 0 auto; }
+        .header { text-align: center; color: white; padding: 20px 0; }
+        .header h1 { font-size: 24px; margin-bottom: 8px; }
+        .header p { opacity: 0.9; font-size: 13px; }
         .card {
             background: white;
             border-radius: 16px;
-            padding: 24px;
+            padding: 20px;
             margin-bottom: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
         }
-        .card h2 { font-size: 18px; color: #333; margin-bottom: 16px; }
+        .card h2 { font-size: 16px; color: #333; margin-bottom: 12px; }
         .btn {
             display: block;
             width: 100%;
-            padding: 14px 20px;
+            padding: 12px 16px;
             border: none;
             border-radius: 12px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.2s;
         }
         .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
         .btn-secondary { background: #f5f5f5; color: #333; }
-        .message {
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 12px;
-            font-size: 14px;
-            display: none;
+        .btn:active { transform: scale(0.98); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; margin-bottom: 6px; color: #555; font-size: 14px; font-weight: 500; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 10px 12px;
+            border: 2px solid #e0e0e0; border-radius: 8px;
+            font-size: 14px; transition: border-color 0.3s;
         }
-        .message.error { background: #ffebee; color: #c62828; }
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-        .stat-item { text-align: center; padding: 12px; background: #f8f9fa; border-radius: 8px; }
-        .stat-value { font-size: 24px; font-weight: bold; color: #667eea; }
-        .stat-label { font-size: 12px; color: #666; margin-top: 4px; }
-        .alert {
-            background: #fff3e0;
-            color: #e65100;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            font-size: 14px;
-            border-left: 4px solid #ff9800;
+        .form-group input:focus, .form-group select:focus {
+            outline: none; border-color: #667eea;
         }
+
+        .location-row { display: flex; gap: 10px; }
+        .location-row .form-group { flex: 1; margin-bottom: 0; }
+
+        .quick-locations { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+        .quick-btn {
+            padding: 6px 12px; background: #f5f5f5;
+            border: 1px solid #e0e0e0; border-radius: 6px;
+            font-size: 12px; color: #666; cursor: pointer;
+        }
+        .quick-btn:active { background: #e8eaf6; border-color: #667eea; color: #667eea; }
+
+        .coordinate-hint { font-size: 11px; color: #999; margin-top: 4px; }
+
+        .result-title { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e0e0e0; }
+        .route-card {
+            background: #f8f9fa; border-radius: 12px;
+            padding: 14px; margin-bottom: 10px;
+            border: 1px solid #e0e0e0;
+        }
+        .route-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .route-time { font-size: 16px; font-weight: 600; color: #667eea; }
+        .route-distance { font-size: 13px; color: #888; }
+        .route-info { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+        .route-tag {
+            display: inline-flex; align-items: center;
+            padding: 3px 10px; background: #e8eaf6;
+            color: #3f51b5; border-radius: 16px;
+            font-size: 11px; font-weight: 500;
+        }
+        .route-steps { margin-top: 10px; }
+        .step-item { display: flex; align-items: flex-start; padding: 6px 0; border-bottom: 1px dashed #e0e0e0; }
+        .step-item:last-child { border-bottom: none; }
+        .step-icon {
+            width: 22px; height: 22px; border-radius: 50%;
+            background: #667eea; color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; margin-right: 10px; flex-shrink: 0;
+        }
+        .step-icon.walk { background: #4caf50; }
+        .step-icon.bus { background: #2196f3; }
+        .step-content { flex: 1; }
+        .step-text { font-size: 13px; color: #333; margin-bottom: 3px; }
+        .step-detail { font-size: 11px; color: #888; }
+
+        .loading { text-align: center; padding: 30px; color: #888; }
+        .loading-spinner {
+            width: 36px; height: 36px;
+            border: 3px solid #e0e0e0; border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .error-message { background: #ffebee; color: #c62828; padding: 10px 14px; border-radius: 8px; margin-top: 10px; font-size: 13px; }
+        .tab-nav { display: flex; gap: 8px; margin-bottom: 16px; }
+        .tab-btn {
+            flex: 1; padding: 10px; background: rgba(255,255,255,0.2);
+            color: white; border: none; border-radius: 8px;
+            font-size: 14px; cursor: pointer;
+        }
+        .tab-btn.active { background: white; color: #667eea; }
+
+        .nav-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+        .nav-tab {
+            flex: 1; padding: 8px; background: rgba(255,255,255,0.2);
+            color: white; border: none; border-radius: 8px;
+            font-size: 13px; cursor: pointer; transition: all 0.2s;
+        }
+        .nav-tab.active { background: white; color: #667eea; font-weight: 600; }
+
+        .page { display: none; }
+        .page.active { display: block; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>🏃 Runner</h1>
-            <p>Keep 跑步数据同步助手</p>
+            <p>Keep 数据同步 · 公交查询</p>
         </div>
 
-        <div class="card">
-            <div class="alert">⚠️ 本应用需要 Root 权限才能读取 Keep 数据</div>
-            <h2>使用说明</h2>
-            <p style="font-size:14px;color:#666;line-height:1.6;">
-                1. 确保手机已 Root（Magisk/超级用户）<br>
-                2. 确保已安装 Keep APP 并有跑步记录<br>
-                3. 点击下方"同步 Keep 数据"按钮<br>
-                4. 在弹出的 Root 授权窗口中点击"允许"
-            </p>
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchPage('keep')">Keep 同步</button>
+            <button class="nav-tab" onclick="switchPage('bus')">公交查询</button>
         </div>
 
-        <div class="card">
-            <h2>操作</h2>
-            <button class="btn btn-primary" id="syncBtn" onclick="syncKeepData()">同步 Keep 数据</button>
-            <button class="btn btn-secondary" onclick="refreshData()" style="margin-top:12px;">刷新数据</button>
-            <div id="message" class="message"></div>
+        <!-- Keep 同步页面 -->
+        <div id="keepPage" class="page active">
+            <div class="card">
+                <div style="background:#fff3e0;color:#e65100;padding:10px;border-radius:8px;margin-bottom:14px;font-size:13px;border-left:4px solid #ff9800;">
+                    ⚠️ 本应用需要 Root 权限才能读取 Keep 数据
+                </div>
+                <h2>使用说明</h2>
+                <p style="font-size:13px;color:#666;line-height:1.6;">
+                    1. 确保手机已 Root（Magisk/超级用户）<br>
+                    2. 确保已安装 Keep APP 并有跑步记录<br>
+                    3. 点击下方"同步 Keep 数据"按钮<br>
+                    4. 在弹出的 Root 授权窗口中点击"允许"
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>操作</h2>
+                <button class="btn btn-primary" id="syncBtn" onclick="syncKeepData()">同步 Keep 数据</button>
+                <button class="btn btn-secondary" onclick="refreshData()" style="margin-top:10px;">刷新数据</button>
+                <div id="message" style="background:#e8f5e9;color:#2e7d32;padding:10px;border-radius:8px;margin-top:10px;font-size:13px;display:none;"></div>
+            </div>
+
+            <div class="card">
+                <h2>跑步统计</h2>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;">
+                    <div style="text-align:center;padding:10px;background:#f8f9fa;border-radius:8px;">
+                        <div style="font-size:20px;font-weight:bold;color:#667eea;" id="totalRuns">0</div>
+                        <div style="font-size:11px;color:#666;margin-top:3px;">总跑次</div>
+                    </div>
+                    <div style="text-align:center;padding:10px;background:#f8f9fa;border-radius:8px;">
+                        <div style="font-size:20px;font-weight:bold;color:#667eea;" id="totalDistance">0</div>
+                        <div style="font-size:11px;color:#666;margin-top:3px;">总距离 (km)</div>
+                    </div>
+                    <div style="text-align:center;padding:10px;background:#f8f9fa;border-radius:8px;">
+                        <div style="font-size:20px;font-weight:bold;color:#667eea;" id="totalCalories">0</div>
+                        <div style="font-size:11px;color:#666;margin-top:3px;">总消耗 (kcal)</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h2>跑步统计</h2>
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-value" id="totalRuns">0</div>
-                    <div class="stat-label">总跑次</div>
+        <!-- 公交查询页面 -->
+        <div id="busPage" class="page">
+            <div class="card">
+                <h2>公交线路查询</h2>
+                <div class="form-group">
+                    <input type="text" id="busLineName" placeholder="请输入公交线路号" value="140">
+                    <div class="coordinate-hint">例：140、20、K1 等</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="totalDistance">0</div>
-                    <div class="stat-label">总距离 (km)</div>
+                <div class="form-group">
+                    <select id="searchType">
+                        <option value="line">查询公交线路站点</option>
+                        <option value="route">查询两点间公交路线</option>
+                    </select>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="totalCalories">0</div>
-                    <div class="stat-label">总消耗 (kcal)</div>
+                <button class="btn btn-primary" id="searchBtn" onclick="searchBus()" style="margin-top:14px;">
+                    查询
+                </button>
+            </div>
+
+            <!-- 路线查询时的坐标输入（隐藏，切换到路线模式时显示） -->
+            <div class="card" id="routeInputCard" style="display:none;">
+                <h2>起点坐标</h2>
+                <div class="location-row">
+                    <div class="form-group">
+                        <input type="number" step="any" id="fromLat" placeholder="纬度" value="26.0745">
+                        <div class="coordinate-hint">例：26.0745</div>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" step="any" id="fromLon" placeholder="经度" value="119.2965">
+                        <div class="coordinate-hint">例：119.2965</div>
+                    </div>
                 </div>
+                <div class="quick-locations">
+                    <button class="quick-btn" onclick="fillLocation('from', 26.0745, 119.2965)">五一广场</button>
+                    <button class="quick-btn" onclick="fillLocation('from', 26.0822, 119.3067)">福州火车站</button>
+                    <button class="quick-btn" onclick="fillLocation('from', 26.0500, 119.2877)">茶亭公园</button>
+                    <button class="quick-btn" onclick="fillLocation('from', 26.0636, 119.2532)">金牛山公园</button>
+                </div>
+            </div>
+
+            <div class="card" id="routeInputCard2" style="display:none;">
+                <h2>终点坐标</h2>
+                <div class="location-row">
+                    <div class="form-group">
+                        <input type="number" step="any" id="toLat" placeholder="纬度" value="26.0822">
+                        <div class="coordinate-hint">例：26.0822</div>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" step="any" id="toLon" placeholder="经度" value="119.3067">
+                        <div class="coordinate-hint">例：119.3067</div>
+                    </div>
+                </div>
+                <div class="quick-locations">
+                    <button class="quick-btn" onclick="fillLocation('to', 26.0822, 119.3067)">福州火车站</button>
+                    <button class="quick-btn" onclick="fillLocation('to', 26.0745, 119.2965)">五一广场</button>
+                    <button class="quick-btn" onclick="fillLocation('to', 26.0500, 119.2877)">茶亭公园</button>
+                    <button class="quick-btn" onclick="fillLocation('to', 26.0636, 119.2532)">金牛山公园</button>
+                </div>
+            </div>
+
+            <div class="card" id="routeModeCard" style="display:none;">
+                <h2>查询模式</h2>
+                <select id="searchMode">
+                    <option value="0">速度优先（推荐）</option>
+                    <option value="1">距离优先</option>
+                    <option value="2">最少换乘</option>
+                    <option value="3">最少步行</option>
+                </select>
+            </div>
+
+            <div class="card" id="resultCard" style="display:none;">
+                <div class="result-title">查询结果</div>
+                <div id="resultContent"></div>
             </div>
         </div>
     </div>
 
     <script type="text/javascript">
-        // 同步 Keep 数据 - 全局函数
+        // 页面切换
+        function switchPage(page) {
+            document.querySelectorAll('.nav-tab').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.page').forEach(function(p) {
+                p.classList.remove('active');
+            });
+
+            if (page === 'keep') {
+                document.querySelector('.nav-tab:nth-child(1)').classList.add('active');
+                document.getElementById('keepPage').classList.add('active');
+            } else {
+                document.querySelector('.nav-tab:nth-child(2)').classList.add('active');
+                document.getElementById('busPage').classList.add('active');
+            }
+        }
+
+        // 填充坐标
+        function fillLocation(type, lat, lon) {
+            document.getElementById(type + 'Lat').value = lat;
+            document.getElementById(type + 'Lon').value = lon;
+        }
+
+        // 切换查询类型
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchTypeSelect = document.getElementById('searchType');
+            if (searchTypeSelect) {
+                searchTypeSelect.addEventListener('change', function() {
+                    var isLineSearch = this.value === 'line';
+                    document.getElementById('routeInputCard').style.display = isLineSearch ? 'none' : 'block';
+                    document.getElementById('routeInputCard2').style.display = isLineSearch ? 'none' : 'block';
+                    document.getElementById('routeModeCard').style.display = isLineSearch ? 'none' : 'block';
+                    document.getElementById('searchBtn').textContent = isLineSearch ? '查询公交线路' : '查询路线';
+                });
+            }
+        });
+
+        // 使用默认坐标（福州）
+        function fillDefaultLocations() {
+            fillLocation('from', 26.0745, 119.2965);  // 福州五一广场
+            fillLocation('to', 26.0822, 119.3067);    // 福州火车站
+        }
+
+        // 搜索公交
+        function searchBus() {
+            var searchType = document.getElementById('searchType').value;
+
+            if (searchType === 'line') {
+                // 公交线路查询
+                var busLineName = document.getElementById('busLineName').value.trim();
+                if (!busLineName) {
+                    alert('请输入公交线路号');
+                    return;
+                }
+                searchBusLine(busLineName);
+            } else {
+                // 路线查询
+                var fromLat = parseFloat(document.getElementById('fromLat').value);
+                var fromLon = parseFloat(document.getElementById('fromLon').value);
+                var toLat = parseFloat(document.getElementById('toLat').value);
+                var toLon = parseFloat(document.getElementById('toLon').value);
+                var mode = parseInt(document.getElementById('searchMode').value);
+
+                if (!fromLat || !fromLon || !toLat || !toLon) {
+                    alert('请输入完整的起点和终点坐标');
+                    return;
+                }
+                searchRoute(fromLat, fromLon, toLat, toLon, mode);
+            }
+        }
+
+        // 查询公交线路
+        function searchBusLine(busLineName) {
+            var btn = document.getElementById('searchBtn');
+            btn.disabled = true;
+            btn.textContent = '查询中...';
+
+            document.getElementById('resultCard').style.display = 'none';
+
+            if (window.AndroidApp && window.AndroidApp.searchBusLine) {
+                console.log('调用 searchBusLine:', busLineName);
+                window.AndroidApp.searchBusLine(busLineName, 'onBusLineResult');
+            } else {
+                alert('原生接口不可用');
+                btn.disabled = false;
+                btn.textContent = '查询公交线路';
+            }
+        }
+
+        // 搜索路线
+        function searchRoute(fromLat, fromLon, toLat, toLon, mode) {
+            var btn = document.getElementById('searchBtn');
+            btn.disabled = true;
+            btn.textContent = '查询中...';
+
+            document.getElementById('resultCard').style.display = 'none';
+
+            if (window.AndroidApp && window.AndroidApp.searchBusRoute) {
+                console.log('调用 searchBusRoute:', fromLat, fromLon, toLat, toLon, mode);
+                window.AndroidApp.searchBusRoute(fromLat, fromLon, toLat, toLon, mode, 'onBusRouteResult');
+            } else {
+                alert('原生接口不可用');
+                btn.disabled = false;
+                btn.textContent = '查询路线';
+            }
+        }
+
+        // 回调函数处理 - 公交线路查询
+        function onBusLineResult(resultJson) {
+            console.log('收到公交线路结果:', resultJson);
+
+            var btn = document.getElementById('searchBtn');
+            btn.disabled = false;
+            btn.textContent = '查询公交线路';
+
+            try {
+                var result = JSON.parse(resultJson);
+                var resultCard = document.getElementById('resultCard');
+                var resultContent = document.getElementById('resultContent');
+
+                resultCard.style.display = 'block';
+
+                if (!result.success) {
+                    resultContent.innerHTML = '<div class="error-message">查询失败：' + result.error + '</div>';
+                    return;
+                }
+
+                if (!result.busLine || !result.busLine.stops || result.busLine.stops.length === 0) {
+                    resultContent.innerHTML = '<div class="error-message">未找到公交线路：' + result.lineName + '</div>';
+                    return;
+                }
+
+                resultContent.innerHTML = renderBusLine(result.busLine);
+
+            } catch (e) {
+                console.error('解析结果失败:', e);
+                document.getElementById('resultContent').innerHTML =
+                    '<div class="error-message">结果解析失败：' + e.message + '</div>';
+            }
+        }
+
+        // 渲染公交线路
+        function renderBusLine(busLine) {
+            var html = '<div class="route-card">' +
+                '<div class="route-header">' +
+                '<span class="route-time" style="font-size:18px;">' + busLine.name + '</span>' +
+                '</div>' +
+                '<div class="route-info">';
+
+            if (busLine.startTime) {
+                html += '<span class="route-tag">🕐 首班：' + busLine.startTime + '</span>';
+            }
+            if (busLine.endTime) {
+                html += '<span class="route-tag">🕐 末班：' + busLine.endTime + '</span>';
+            }
+            if (busLine.fare) {
+                html += '<span class="route-tag">💰 ' + busLine.fare + '</span>';
+            }
+            if (busLine.totalDistance) {
+                html += '<span class="route-tag">📏 全程：' + formatDistance(busLine.totalDistance) + '</span>';
+            }
+
+            html += '</div><div class="route-steps">';
+
+            if (busLine.stops && busLine.stops.length > 0) {
+                busLine.stops.forEach(function(stop, i) {
+                    html += '<div class="step-item">' +
+                        '<div class="step-icon">' + (i + 1) + '</div>' +
+                        '<div class="step-content">' +
+                        '<div class="step-text">' + stop.name + '</div>' +
+                        '</div></div>';
+                });
+            }
+
+            html += '</div></div>';
+            return html;
+        }
+
+        // 回调函数处理 - 路线查询
+        function onBusRouteResult(resultJson) {
+            console.log('收到结果:', resultJson);
+
+            var btn = document.getElementById('searchBtn');
+            btn.disabled = false;
+            btn.textContent = '查询路线';
+
+            try {
+                var result = JSON.parse(resultJson);
+                var resultCard = document.getElementById('resultCard');
+                var resultContent = document.getElementById('resultContent');
+
+                resultCard.style.display = 'block';
+
+                if (!result.success) {
+                    resultContent.innerHTML = '<div class="error-message">查询失败：' + result.error + '</div>';
+                    return;
+                }
+
+                if (!result.routes || result.routes.length === 0) {
+                    resultContent.innerHTML = '<div class="error-message">未找到合适的公交路线</div>';
+                    return;
+                }
+
+                var html = '';
+                result.routes.forEach(function(route, index) {
+                    html += renderRouteCard(route, index + 1);
+                });
+
+                resultContent.innerHTML = html;
+
+            } catch (e) {
+                console.error('解析结果失败:', e);
+                document.getElementById('resultContent').innerHTML =
+                    '<div class="error-message">结果解析失败：' + e.message + '</div>';
+            }
+        }
+
+        // 渲染路线卡片
+        function renderRouteCard(route, index) {
+            var duration = formatDuration(route.duration);
+            var distance = formatDistance(route.distance);
+            var walkingDistance = formatDistance(route.walkingDistance);
+
+            var html = '<div class="route-card">' +
+                '<div class="route-header">' +
+                '<span class="route-time">方案 ' + index + '</span>' +
+                '<span class="route-distance">' + duration + ' · ' + distance + '</span>' +
+                '</div>' +
+                '<div class="route-info">';
+
+            html += '<span class="route-tag">🚌 换乘 ' + route.transferCount + ' 次</span>';
+            html += '<span class="route-tag">🚶 步行 ' + walkingDistance + '</span>';
+            if (route.fare) {
+                html += '<span class="route-tag">💰 ¥' + route.fare + '</span>';
+            }
+
+            html += '</div><div class="route-steps">';
+
+            if (route.steps && route.steps.length > 0) {
+                route.steps.forEach(function(step, i) {
+                    html += renderStep(step, i + 1);
+                });
+            }
+
+            html += '</div></div>';
+            return html;
+        }
+
+        // 渲染步骤
+        function renderStep(step, index) {
+            var stepDistance = formatDistance(step.distance);
+            var isWalk = step.isWalk || false;
+            var hasBusLine = step.busLine && step.busLine.name;
+
+            var icon = '📍';
+            var iconClass = '';
+
+            if (isWalk) { icon = '🚶'; iconClass = 'walk'; }
+            else if (hasBusLine) { icon = '🚌'; iconClass = 'bus'; }
+
+            var text = step.action || '未知步骤';
+            var detail = '';
+
+            if (hasBusLine) {
+                text = '乘坐 ' + step.busLine.name;
+                detail = '共 ' + (step.busLine.viaStops ? step.busLine.viaStops.length : 0) + ' 站 · ' + stepDistance;
+            } else if (isWalk) {
+                text = '步行';
+                detail = stepDistance;
+            }
+
+            return '<div class="step-item">' +
+                '<div class="step-icon ' + iconClass + '">' + icon + '</div>' +
+                '<div class="step-content">' +
+                '<div class="step-text">' + text + '</div>' +
+                (detail ? '<div class="step-detail">' + detail + '</div>' : '') +
+                '</div></div>';
+        }
+
+        // 格式化时间
+        function formatDuration(seconds) {
+            if (!seconds) return '未知';
+            var minutes = Math.floor(seconds / 60);
+            if (minutes < 60) { return minutes + '分钟'; }
+            var hours = Math.floor(minutes / 60);
+            var mins = minutes % 60;
+            return hours + '小时' + (mins > 0 ? mins + '分钟' : '');
+        }
+
+        // 格式化距离
+        function formatDistance(meters) {
+            if (!meters) return '';
+            if (meters < 1000) { return Math.round(meters) + '米'; }
+            return (meters / 1000).toFixed(1) + '公里';
+        }
+
+        // Keep 同步相关
         window.syncKeepData = function() {
             console.log('syncKeepData called at ' + new Date().toISOString());
             var btn = document.getElementById('syncBtn');
@@ -138,7 +586,6 @@
             }
         };
 
-        // 刷新数据
         window.refreshData = function() {
             console.log('refreshData called');
             if (window.AndroidApp) {
@@ -159,15 +606,20 @@
         function showMessage(text, isError) {
             var msgEl = document.getElementById('message');
             msgEl.textContent = text;
-            msgEl.className = 'message' + (isError ? ' error' : '');
+            msgEl.style.background = isError ? '#ffebee' : '#e8f5e9';
+            msgEl.style.color = isError ? '#c62828' : '#2e7d32';
             msgEl.style.display = 'block';
-            setTimeout(function() {
-                msgEl.style.display = 'none';
-            }, 5000);
+            setTimeout(function() { msgEl.style.display = 'none'; }, 5000);
         }
 
         console.log('Runner App initialized');
         console.log('AndroidApp available:', !!window.AndroidApp);
+
+        // 页面加载后填充默认值
+        window.onload = function() {
+            fillDefaultLocations();
+            refreshData();
+        };
     </script>
 </body>
 </html>

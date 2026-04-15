@@ -1,9 +1,12 @@
 package com.example.runner
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.webkit.JavascriptInterface
+import android.webkit.WebView
 import android.widget.Toast
+import com.example.runner.bus.BusWebInterface
 import com.example.runner.data.RunData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +21,10 @@ import java.util.Locale
  * WebView 与 JavaScript 通信的接口类
  * Vue 应用中可以通过 window.AndroidApp.xxx() 调用原生方法
  */
-class WebAppInterface(private val context: Context) {
+class WebAppInterface(
+    private val context: Context,
+    private val webView: WebView
+) {
 
     companion object {
         private const val TAG = "WebAppInterface"
@@ -29,6 +35,58 @@ class WebAppInterface(private val context: Context) {
     private val keepDataReader = KeepDataReader(context)
     private val keepApiClient = KeepApiClient(context)
     private var syncJob: Job? = null
+
+    // 公交查询接口
+    private val busWebInterface = BusWebInterface(context, webView)
+
+    /**
+     * 查询公交线路（按线路名称）
+     * @param lineName 公交线路名称（如：140 路）
+     * @param callback JS 回调函数名
+     */
+    @JavascriptInterface
+    fun searchBusLine(
+        lineName: String,
+        callback: String
+    ) {
+        Log.d(TAG, "searchBusLine: lineName=$lineName, callback=$callback")
+        busWebInterface.searchBusLine(lineName, callback)
+    }
+
+    /**
+     * 调用 JavaScript 回调函数
+     */
+    private fun callJsCallback(callbackName: String, data: String) {
+        if (context is Activity) {
+            context.runOnUiThread {
+                webView.evaluateJavascript("javascript:$callbackName($data)") {
+                    Log.d(TAG, "JS 回调结果：$it")
+                }
+            }
+        }
+    }
+
+    /**
+     * 查询公交路线
+     * @param fromLat 起点纬度
+     * @param fromLon 起点经度
+     * @param toLat 终点纬度
+     * @param toLon 终点经度
+     * @param mode 查询模式 (0-速度优先，1-距离优先，2-最少换乘，3-最少步行)
+     * @param callback JS 回调函数名
+     */
+    @JavascriptInterface
+    fun searchBusRoute(
+        fromLat: Double,
+        fromLon: Double,
+        toLat: Double,
+        toLon: Double,
+        mode: Int,
+        callback: String
+    ) {
+        Log.d(TAG, "searchBusRoute: from=($fromLat,$fromLon), to=($toLat,$toLon), mode=$mode, callback=$callback")
+        busWebInterface.searchBusRoute(fromLat, fromLon, toLat, toLon, mode, callback)
+    }
 
     /**
      * 从 Keep App 中提取 Token 并同步数据
@@ -44,8 +102,18 @@ class WebAppInterface(private val context: Context) {
             val tokenInfo = getKeepAuthToken()
 
             if (tokenInfo == null) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "无法获取 Keep 认证信息，请确保 Keep 已登录", Toast.LENGTH_LONG).show()
+                Log.w(TAG, "无法获取 Token，尝试从数据库读取")
+                // Token 获取失败，尝试直接从数据库读取
+                val runData = keepDataReader.readRunRecords()
+                if (runData.isNotEmpty()) {
+                    runDataList.value = runData
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "从数据库读取成功！共 ${runData.size} 条记录", Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "无法获取 Keep 数据", Toast.LENGTH_LONG).show()
+                    }
                 }
                 return@launch
             }
@@ -80,9 +148,18 @@ class WebAppInterface(private val context: Context) {
                 }
 
                 result.onFailure { error ->
-                    Log.e(TAG, "同步失败", error)
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(context, "同步失败：${error.message}", Toast.LENGTH_LONG).show()
+                    Log.e(TAG, "API 同步失败：${error.message}，尝试从数据库读取")
+                    // API 失败时尝试从数据库读取
+                    val runData = keepDataReader.readRunRecords()
+                    if (runData.isNotEmpty()) {
+                        runDataList.value = runData
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "从数据库读取成功！共 ${runData.size} 条记录", Toast.LENGTH_LONG).show()
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "同步失败：${error.message}", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
             } catch (e: Exception) {
@@ -96,75 +173,83 @@ class WebAppInterface(private val context: Context) {
 
     /**
      * 从 Keep 的 Shared Preferences 中获取认证 Token
+     * 使用 Root 权限读取 MMKV 文件
      */
     private fun getKeepAuthToken(): Pair<String, String>? {
-        return try {
-            val sharedPrefs = context.createPackageContext("com.gotokeep.keep", Context.CONTEXT_IGNORE_SECURITY)
-                .getSharedPreferences("Unicorn.a9e4b7e56e7697705b6e668c0b81a239", Context.MODE_WORLD_READABLE)
-
-            val token = sharedPrefs.getString("AUTH_TOKEN", null)
-            val userId = sharedPrefs.getString("YSF_ID_MP/5777b164d04ce428051adacf", null)
-                ?: sharedPrefs.getString("YSF_ID_YX", null)
-
-            if (token != null && userId != null) {
-                Pair(token, userId)
-            } else {
-                // 尝试从 MMKV 文件读取
-                getKeepTokenFromMMKV()
-            }
-        } catch (e: Exception) {
-            Log.w(TAG, "无法从 SharedPrefs 获取 Token", e)
-            getKeepTokenFromMMKV()
-        }
+        // 使用 Root 方式读取 Keep 的 MMKV 文件
+        return getKeepTokenFromMMKV()
     }
 
     /**
      * 从 Keep 的 MMKV 文件中解析 Token
+     * 使用 Root 命令读取 Keep 应用私有目录下的 MMKV 文件
      */
     private fun getKeepTokenFromMMKV(): Pair<String, String>? {
-        return try {
-            val mmkvFile = context.filesDir.parentFile?.let {
-                java.io.File(it, "mmkv/5777b164d04ce428051adacf")
-            } ?: java.io.File(context.filesDir, "mmkv/5777b164d04ce428051adacf")
+        val dataReader = KeepDataReader(context)
 
-            if (!mmkvFile.exists()) {
-                // 尝试从系统目录读取
-                val keepContext = context.createPackageContext("com.gotokeep.keep", Context.CONTEXT_IGNORE_SECURITY)
-                val mmkvDir = java.io.File(keepContext.filesDir, "mmkv")
-                val files = mmkvDir.listFiles()?.filter { it.name.startsWith("5777") }
-                if (!files.isNullOrEmpty()) {
-                    parseMMKVFile(files.first())
-                } else {
-                    null
-                }
-            } else {
-                parseMMKVFile(mmkvFile)
-            }
-        } catch (e: Exception) {
-            Log.w(TAG, "无法从 MMKV 获取 Token", e)
-            null
+        // Keep 的 user_info MMKV 文件路径（包含 authtoken 和 userid）
+        val userInfoFile = "/data/data/com.gotokeep.keep/files/mmkv/user_info"
+
+        // 使用 strings 命令提取可读字符串
+        val stringsResult = dataReader.executeRootCommand("strings $userInfoFile")
+        if (stringsResult == null || stringsResult.isEmpty()) {
+            Log.w(TAG, "user_info 文件读取失败")
+            return null
         }
+
+        Log.d(TAG, "user_info 文件大小：${stringsResult.length} 字节")
+
+        // 解析 strings 输出
+        return parseUserInfoOutput(stringsResult)
     }
 
     /**
-     * 解析 MMKV 文件获取 Token
+     * 解析 user_info MMKV 文件输出获取 Token
+     * MMKV 格式：key 后跟 value，每行一个
+     * 示例：
+     * authtoken
+     * eyJ0eXAiOiJKV1QiLCJhbG...
+     * userid
+     * 5777b164d04ce428051adacf
      */
-    private fun parseMMKVFile(file: java.io.File): Pair<String, String>? {
-        val content = file.readText()
-        // MMKV 格式：key\0value\0key\0value...
+    private fun parseUserInfoOutput(output: String): Pair<String, String>? {
         var token: String? = null
         var userId: String? = null
 
-        // 查找 authtoken
-        val authPattern = Regex("authtoken\\x00([eyJ0-9_.]+)")
-        val userPattern = Regex("userid\\x00([a-f0-9]+)")
+        val lines = output.split("\n").map { it.trim() }.filter { it.isNotEmpty() }
 
-        token = authPattern.find(content)?.groupValues?.get(1)
-        userId = userPattern.find(content)?.groupValues?.get(1)
+        for (i in lines.indices) {
+            val line = lines[i]
+
+            // 查找 authtoken 的 value（下一行）
+            if (line == "authtoken" && i + 1 < lines.size) {
+                val nextLine = lines[i + 1]
+                // JWT Token 以 eyJ 开头
+                if (nextLine.startsWith("eyJ")) {
+                    token = nextLine
+                    Log.d(TAG, "找到 Token: ${token.take(20)}...")
+                }
+            }
+
+            // 查找 userid 的 value（下一行）
+            if (line == "userid" && i + 1 < lines.size) {
+                val nextLine = lines[i + 1]
+                // UID 是 16 进制字符串
+                if (nextLine.matches(Regex("[a-fA-F0-9]+"))) {
+                    userId = nextLine
+                    Log.d(TAG, "找到 UID: $userId")
+                }
+            }
+
+            if (token != null && userId != null) {
+                break
+            }
+        }
 
         return if (token != null && userId != null) {
             Pair(token, userId)
         } else {
+            Log.w(TAG, "未能完整解析 Token 和 UID. token=${token != null}, userId=${userId != null}")
             null
         }
     }

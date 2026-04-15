@@ -19,17 +19,20 @@ interface KeepApiService {
     /**
      * 获取账号信息（验证 Token）
      */
-    @GET("account/1/account")
-    suspend fun getAccount(@Header("Authorization") token: String): ResponseBody
+    @GET("user/v1/{userId}/profile")
+    suspend fun getAccount(
+        @Header("Authorization") token: String,
+        @Path("userId") userId: String
+    ): ResponseBody
 
     /**
-     * 获取运动数据列表
+     * 获取运动数据列表 - 尝试 fitness API 路径
      * @param userId 用户 ID
-     * @param start 开始时间戳（毫秒）
-     * @param end 结束时间戳（毫秒）
+     * @param start 开始时间戳（秒）
+     * @param end 结束时间戳（秒）
      * @param limit 限制数量
      */
-    @GET("fitnessdata/v1/user/{userId}/outdoormove")
+    @GET("fitness/v1/{userId}/moves")
     suspend fun getOutdoorMove(
         @Header("Authorization") token: String,
         @Path("userId") userId: String,
@@ -39,21 +42,32 @@ interface KeepApiService {
     ): ResponseBody
 
     /**
-     * 获取跑步详情（GPX 数据）
+     * 获取运动详情
      */
-    @GET("fitnessdata/v1/user/{userId}/outdoormove/{moveId}/detail")
+    @GET("fitness/v1/{userId}/moves/{moveId}")
     suspend fun getMoveDetail(
         @Header("Authorization") token: String,
         @Path("userId") userId: String,
         @Path("moveId") moveId: String
     ): ResponseBody
+
+    /**
+     * 备选方案：使用 POST 方式获取运动数据
+     */
+    @POST("data/v1/moves/query")
+    suspend fun queryMoves(
+        @Header("Authorization") token: String,
+        @Body request: MovesQueryRequest
+    ): ResponseBody
 }
 
 /**
- * 请求体包装类
+ * 运动数据查询请求
  */
-data class KeepApiRequest(
-    val app_version: String = "8.2.11",
-    val client_id: String = "ios",
-    val os_type: String = "android"
+data class MovesQueryRequest(
+    val userId: String,
+    val startDate: Long,
+    val endDate: Long,
+    val limit: Int = 100,
+    val types: List<Int> = listOf(0, 1) // 0=跑步，1=户外跑步
 )

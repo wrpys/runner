@@ -5,6 +5,15 @@
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- 高德地图所需权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- 访问 Keep 应用数据的权限 -->
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
@@ -19,6 +28,14 @@
         android:theme="@style/Theme.Runner"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <!-- 高德地图 API Key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="040bfa173b4ea64377a69cdd2e22257c" />
+
+        <!-- 高德地图定位服务 -->
+        <service android:name="com.amap.api.location.APSService" />
 
         <activity
             android:name=".MainActivity"
